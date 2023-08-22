@@ -1,0 +1,13 @@
+.mainContainer {
+	max-width: 100%;
+	height: auto;
+	margin-top: 60px;
+}
+.cardContainer {
+	width: 100%;
+	height: auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 25px;
+	justify-content: space-around;
+}
