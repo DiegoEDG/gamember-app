@@ -1,21 +1,13 @@
-import { useEffect, useState } from 'react';
-import { fetchGames } from '../services';
-import { Game } from '../interfaces/Response';
+import { GameCard, Loader } from '../components';
+import { useFetchGames } from '../hooks';
 import styles from './HomePage.module.css';
-import { GameCard } from '../components';
 
 const HomePage = () => {
-	const [games, setGames] = useState<Game[]>([]);
-	useEffect(() => {
-		fetchGames({ page: 2, pageSize: 12 }).then((res) => setGames(res));
-	}, []);
-
+	const queryGames = useFetchGames({ page: 1, pageSize: 12 });
 	return (
 		<div className={styles.mainContainer}>
 			<section className={styles.cardContainer}>
-				{games.map((game) => (
-					<GameCard key={game.id} game={game} />
-				))}
+				{queryGames.data ? queryGames.data.map((game) => <GameCard key={game.id} game={game} />) : <Loader />}
 			</section>
 		</div>
 	);
