@@ -4,12 +4,13 @@ import styles from './HomePage.module.css';
 
 const HomePage = () => {
 	const queryGames = useFetchGames({ page: 1, pageSize: 12 });
+
 	return (
-		<div className={styles.mainContainer}>
-			<section className={styles.cardContainer}>
+		<section className={styles.mainContainer}>
+			<article className={styles.cardContainer}>
 				{queryGames.data ? queryGames.data.map((game) => <GameCard key={game.id} game={game} />) : <Loader />}
-			</section>
-		</div>
+			</article>
+		</section>
 	);
 };
 
